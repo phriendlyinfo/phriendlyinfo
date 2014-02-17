@@ -11,8 +11,8 @@
   , "dependencies":
     {
         "koa": "~0.4"
-      , "koa-router": "~1.6.0"
-      , "koa-static": "~1.4.2"
+      , "koa-router": "~3.0"
+      , "koa-static": "~1.4"
       , "react": "~0.8"
       , "underscore": "~1.6"
     }
