@@ -2,18 +2,10 @@
     "development":
     {
         "port": 1983
-      , "elasticsearch":
-        {
-            "requestTimeout": "5000"
-        }
     }
 
   , "production":
     {
         "port": 80
-      , "elasticsearch":
-        {
-            "requestTimeout": "5000"
-        }
     }
 }

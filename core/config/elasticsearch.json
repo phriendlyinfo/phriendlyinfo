@@ -1,0 +1,15 @@
+{
+    "development":
+    {
+        "requestTimeout": "5000"
+      , "index": "phriendlyinfo-v1"
+      , "keepAlive": false
+    }
+
+ ,  "production":
+    {
+        "requestTimeout": "5000"
+      , "index": "phriendlyinfo-v1"
+      , "keepAlive": false
+    }
+}
