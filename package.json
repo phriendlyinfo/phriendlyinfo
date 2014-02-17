@@ -14,12 +14,13 @@
       , "koa-router": "~3.0"
       , "koa-static": "~1.4"
       , "elasticsearch": "~1.5"
-      , "react": "~0.8"
       , "underscore": "~1.6"
     }
 
   , "devDependencies":
     {
+        "co": "~3.0"
+      , "globber": "~0.1"
     }
 
   , "repository":
