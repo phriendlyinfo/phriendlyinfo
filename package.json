@@ -1,0 +1,40 @@
+{
+    "name": "phriendlyinfo"
+  , "version": "0.0.1-dev"
+  , "description": "phriendlyinfo web app"
+  , "author": "benjreinhart"
+  , "engines":
+    {
+      "node": ">=0.11.11"
+    }
+
+  , "dependencies":
+    {
+        "koa": "~0.4"
+      , "koa-router": "~1.6.0"
+      , "koa-static": "~1.4.2"
+      , "react": "~0.8"
+      , "underscore": "~1.6"
+    }
+
+  , "devDependencies":
+    {
+    }
+
+  , "repository":
+    {
+        "type" : "git"
+      , "url"  : "git@github.com:phriendlyinfo/phriendlyinfo.git"
+    }
+
+  , "bugs":
+    {
+        "url": "https://github.com/phriendlyinfo/phriendlyinfo/issues"
+    }
+
+  , "main": "index.js"
+
+  , "homepage": "http://phriendly.info"
+
+  , "license": "MIT"
+}
