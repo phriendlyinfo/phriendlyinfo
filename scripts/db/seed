@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+
+var Path = require('path');
+require(Path.join(process.cwd(), 'core', 'globals'));
+
+var co = require('co')
+  , fs = require('fs')
+  , config = requireRoot('core/config')
+  , client = requireRoot('core/lib/elasticsearch/client')
+  , globber = require('globber')
+  , directory = process.argv[2];
+
+client.indices.exists({index: config.elasticsearch.index}, function(err, response, status){
+  if (null != err) {
+    console.error(err);
+    process.exit(1);
+  }
+
+  if (404 === status) {
+    console.error('"' + config.elasticsearch.index + '" index does not exist, need to migrate elasticsearch');
+    process.exit(1)
+  }
+
+  var paths = globber.sync(Path.resolve(directory), {extension: 'json'});
+
+  var shows = paths.filter(function(path){
+    return /^\d{4}.json$/.test(Path.basename(path));
+  }).reduce(function(memo, path){
+    return memo.concat(require(path));
+  }, []);
+
+  co(function *(){
+    yield buildIndexRequests(shows);
+    console.log('Seeded %s index', config.elasticsearch.index);
+    process.exit(0);
+  })();
+});
+
+function buildIndexRequests(shows){
+  return shows.map(function(show){
+    return function(fn){
+      client.create({index: config.elasticsearch.index, type: 'show', body: show}, fn);
+    }
+  });
+}

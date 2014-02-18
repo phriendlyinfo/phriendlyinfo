@@ -1,0 +1,88 @@
+{
+    "show":
+    {
+        "dynamic": "strict"
+      , "properties":
+        {
+            "artist": {"type": "string", "index": "not_analyzed"}
+          , "date": {"type": "date", "format": "YYYY-MM-dd"}
+          , "year": {"type": "integer", "index": "not_analyzed"}
+          , "humanDate": {"type": "string", "index": "not_analyzed"}
+          , "friendlyDate": {"type": "string", "index": "not_analyzed"}
+          , "footnotes": {"type": "string", "index_name": "footnotes"}
+          , "sets":
+            {
+                "properties":
+                {
+                    "id": {"type": "string", "index": "not_analyzed"}
+                  , "length": {"type": "integer"}
+                  , "notes": {"type": "string", "index": "no"}
+                  , "title": {"type": "string"}
+                  , "segue": {"type": "string"}
+                  , "pnet":
+                    {
+                        "properties":
+                        {
+                            "url": {"type": "string", "index": "no"}
+                        }
+                    }
+                }
+            }
+          , "encores":
+            {
+                "properties":
+                {
+                    "id": {"type": "string", "index": "not_analyzed"}
+                  , "length": {"type": "integer"}
+                  , "notes": {"type": "string", "index": "no"}
+                  , "title": {"type": "string"}
+                  , "segue": {"type": "string"}
+                  , "pnet":
+                    {
+                        "properties":
+                        {
+                            "url": {"type": "string", "index": "no"}
+                        }
+                    }
+                }
+            }
+          , "pnet":
+            {
+                "type": "object"
+              , "properties":
+                {
+                    "artistId": {"type": "integer", "index": "no"}
+                  , "meta": {"type": "string"}
+                  , "setlistNotes": {"type": "string"}
+                  , "showId": {"type": "integer", "index": "no"}
+                  , "url": {"type": "string", "index": "no"}
+                }
+            }
+          , "venue":
+            {
+                "type": "object"
+              , "properties":
+                {
+                    "name": {"type": "string"}
+                  , "location":
+                    {
+                        "properties":
+                        {
+                            "city": {"type": "string"}
+                          , "country": {"type": "string"}
+                          , "state": {"type": "string"}
+                        }
+                    }
+                  , "pnet":
+                    {
+                        "properties":
+                        {
+                            "notes": {"type": "string"}
+                          , "venueId": {"type": "integer", "index": "no"}
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

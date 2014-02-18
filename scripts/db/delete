@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+var Path = require('path');
+require(Path.join(process.cwd(), 'core', 'globals'));
+
+var config = requireRoot('core/config')
+  , client = requireRoot('core/lib/elasticsearch/client')
+  , schema = requireRoot('db/schema');
+
+client.indices.delete({index: config.elasticsearch.index}, function(err, response, status){
+  if (null != err) {
+    console.error(err);
+    process.exit(1)
+  }
+
+  if (!(response.ok === true && status === 200)) {
+    if (status !== 200)
+      console.error('Expected 200, but status was %s', status);
+    if (response.ok !== true)
+      console.error('Expected true, but response.ok was %s', response.ok);
+    process.exit(1)
+  }
+
+  console.log('Deleted %s index', config.elasticsearch.index);
+  process.exit(0);
+});
