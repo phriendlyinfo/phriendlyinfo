@@ -4,51 +4,31 @@ var expect = require('chai').expect
   , parser = requireRoot('app/assets/js/search_parser');
 
 describe('SearchParser', function(){
-  describe('"show" command', function(){
-    it('is correctly parsed', function(){
-      var actual = parser.parse('shows')
-        , expected = {command: 'shows'};
-
-      expect(actual).to.deep.equal(expected);
-    });
-
-    it('removes surrounding whitespace', function(){
-      var actual = parser.parse('shows   \n')
-        , expected = {command: 'shows'};
-
-      expect(actual).to.deep.equal(expected);
-    });
+  describe('"shows" command', function(){
+    itBehavesLikeACommand('shows');
   });
 
   describe('"song" command', function(){
-    it('is correctly parsed', function(){
-      var actual = parser.parse('song')
-        , expected = {command: 'song'};
-
-      expect(actual).to.deep.equal(expected);
-    });
-
-    it('removes surrounding whitespace', function(){
-      var actual = parser.parse('song   \n')
-        , expected = {command: 'song'};
-
-      expect(actual).to.deep.equal(expected);
-    });
+    itBehavesLikeACommand('song');
   });
 
   describe('"venue" command', function(){
-    it('is correctly parsed', function(){
-      var actual = parser.parse('venue')
-        , expected = {command: 'venue'};
-
-      expect(actual).to.deep.equal(expected);
-    });
-
-    it('removes surrounding whitespace', function(){
-      var actual = parser.parse('  \n venue   \n')
-        , expected = {command: 'venue'};
-
-      expect(actual).to.deep.equal(expected);
-    });
+    itBehavesLikeACommand('venue');
   });
 });
+
+function itBehavesLikeACommand($command){
+  it('is correctly parsed', function(){
+    var actual = parser.parse($command)
+      , expected = {command: $command};
+
+    expect(actual).to.deep.equal(expected);
+  });
+
+  it('removes surrounding whitespace', function(){
+    var actual = parser.parse(' \n\n ' + $command + '  \n')
+      , expected = {command: $command};
+
+    expect(actual).to.deep.equal(expected);
+  });
+}
