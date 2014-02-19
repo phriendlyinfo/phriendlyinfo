@@ -31,4 +31,26 @@ function itBehavesLikeACommand($command){
 
     expect(actual).to.deep.equal(expected);
   });
+
+  context('with an argument', function(){
+    it('parses out a single word argument', function(){
+      var actual = parser.parse($command + ' fluffhead')
+        , expected = {
+            command: $command,
+            argument: 'fluffhead'
+          };
+
+      expect(actual).to.deep.equal(expected);
+    });
+
+    it('parses out a multi word argument in quotes', function(){
+      var actual = parser.parse($command + ' "madison square garden"')
+        , expected = {
+            command: $command,
+            argument: 'madison square garden'
+          };
+
+      expect(actual).to.deep.equal(expected);
+    });
+  });
 }
