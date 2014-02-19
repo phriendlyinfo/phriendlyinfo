@@ -35,8 +35,8 @@ commandMatch
   = match:$(_ commands _) {return {command: match.trim()}}
 
 argumentMatch
-  = match:$(word) {return {argument: match}}
-  / match:stringLiteral {return {argument: match}}
+  = match:$(word) _ {return {argument: match}}
+  / match:stringLiteral _ {return {argument: match}}
 
 stringLiteral
   = match:$(quote [^'"]+ quote) {return match.match(/^['"](.+)['"]$/)[1]}

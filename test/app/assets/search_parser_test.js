@@ -52,5 +52,15 @@ function itBehavesLikeACommand($command){
 
       expect(actual).to.deep.equal(expected);
     });
+
+    it('ignores trailing whitespace', function(){
+      var actual = parser.parse($command + ' fluffhead  \n ')
+        , expected = {
+            command: $command,
+            argument: 'fluffhead'
+          };
+
+      expect(actual).to.deep.equal(expected);
+    });
   });
 }
