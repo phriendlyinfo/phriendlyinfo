@@ -1,11 +1,11 @@
 start
   = command
 
-COMMANDS
+commands
   = $("shows" / "song" / "venue")
 
 command
-  = match:$(_ COMMANDS _) {return {command: match.trim()}}
+  = match:$(_ commands _) {return {command: match.trim()}}
 
 __ = $(whitespace+)
 _  = __?
