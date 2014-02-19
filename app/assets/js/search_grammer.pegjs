@@ -2,7 +2,7 @@ start
   = commands
 
 COMMANDS
-  = $("shows")
+  = $("shows" / "song")
 
 commands
   = s:$(COMMANDS) {return {command: s}}

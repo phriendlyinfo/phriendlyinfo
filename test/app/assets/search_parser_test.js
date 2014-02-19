@@ -11,5 +11,12 @@ describe('SearchParser', function(){
 
       expect(actual).to.deep.equal(expected);
     });
+
+    it('correctly parses "song"', function(){
+      var actual = parser.parse('song')
+        , expected = {command: 'song'};
+
+      expect(actual).to.deep.equal(expected);
+    });
   });
 });
