@@ -11,6 +11,13 @@ describe('SearchParser', function(){
 
       expect(actual).to.deep.equal(expected);
     });
+
+    it('removes surrounding whitespace', function(){
+      var actual = parser.parse('shows   \n')
+        , expected = {command: 'shows'};
+
+      expect(actual).to.deep.equal(expected);
+    });
   });
 
   describe('"song" command', function(){
@@ -20,11 +27,25 @@ describe('SearchParser', function(){
 
       expect(actual).to.deep.equal(expected);
     });
+
+    it('removes surrounding whitespace', function(){
+      var actual = parser.parse('song   \n')
+        , expected = {command: 'song'};
+
+      expect(actual).to.deep.equal(expected);
+    });
   });
 
   describe('"venue" command', function(){
     it('is correctly parsed', function(){
       var actual = parser.parse('venue')
+        , expected = {command: 'venue'};
+
+      expect(actual).to.deep.equal(expected);
+    });
+
+    it('removes surrounding whitespace', function(){
+      var actual = parser.parse('  \n venue   \n')
         , expected = {command: 'venue'};
 
       expect(actual).to.deep.equal(expected);
