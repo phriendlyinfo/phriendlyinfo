@@ -18,5 +18,12 @@ describe('SearchParser', function(){
 
       expect(actual).to.deep.equal(expected);
     });
+
+    it('correctly parses "venue"', function(){
+      var actual = parser.parse('venue')
+        , expected = {command: 'venue'};
+
+      expect(actual).to.deep.equal(expected);
+    });
   });
 });
