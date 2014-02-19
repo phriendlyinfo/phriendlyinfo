@@ -1,8 +1,8 @@
 start
-  = commands
+  = command
 
 COMMANDS
   = $("shows" / "song" / "venue")
 
-commands
+command
   = s:$(COMMANDS) {return {command: s}}
