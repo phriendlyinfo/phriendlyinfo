@@ -26,7 +26,7 @@ prod:
 build: build-parser
 
 build-parser:
-	@$(PEGJS) $(JS_ASSETS)/search_grammer.pegjs $(JS_ASSETS)/search_parser.js
+	@$(PEGJS) $(JS_ASSETS)/search_grammar.pegjs $(JS_ASSETS)/search_parser.js
 
 test: build
 	@$(MOCHA) --reporter spec --recursive --colors --harmony-generators
