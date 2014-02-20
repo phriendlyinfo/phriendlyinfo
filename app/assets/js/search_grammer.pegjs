@@ -6,7 +6,7 @@
     return hasOwn.call(obj, key);
   }
 
-  function merge(first){
+  function extend(first){
     var i, ref, prop
       , rest = slice.call(arguments, 1)
       , len = rest.length;
@@ -26,7 +26,7 @@ start
   = searchExpression
 
 searchExpression
-  = cm:commandMatch arg:argumentMatch? {return merge(cm, arg)}
+  = cm:commandMatch arg:argumentMatch? {return extend(cm, arg)}
 
 commands
   = $("shows" / "song" / "venue")
