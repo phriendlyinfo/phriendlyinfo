@@ -4,16 +4,60 @@ var expect = require('chai').expect
   , parser = requireRoot('app/assets/js/search_parser');
 
 describe('SearchParser', function(){
-  describe('"shows" command', function(){
+  describe('"show[s]" command', function(){
     itBehavesLikeACommand('shows');
+
+    it('putting it all together now', function(){
+      var search = 'first show in 2013'
+        , actual = parser.parse(search)
+        , expected = {
+            command: 'show',
+            qualifier: 'first',
+            filters: [
+              {filter: 'in', arguments: ['2013']}
+            ]
+          };
+
+      expect(actual).to.deep.equal(expected);
+    });
   });
 
-  describe('"song" command', function(){
+  describe('"song[s]" command', function(){
     itBehavesLikeACommand('song');
+
+    it('putting it all together now', function(){
+      var search = 'song fluffhead between 1996-02-15 1997-06-15 sort asc'
+        , actual = parser.parse(search)
+        , expected = {
+            command: 'song',
+            arguments: ['fluffhead'],
+            filters: [
+              {filter: 'between', arguments: ['1996-02-15', '1997-06-15']},
+              {filter: 'sort', arguments: ['asc']}
+            ]
+          };
+
+      expect(actual).to.deep.equal(expected);
+    });
   });
 
-  describe('"venue" command', function(){
+  describe('"venue[s]" command', function(){
     itBehavesLikeACommand('venue');
+
+    it('putting it all together now', function(){
+      var search = 'venue "madison square garden" in 1995 sort asc'
+        , actual = parser.parse(search)
+        , expected = {
+            command: 'venue',
+            arguments: ['madison square garden'],
+            filters: [
+              {filter: 'in', arguments: ['1995']},
+              {filter: 'sort', arguments: ['asc']}
+            ]
+          };
+
+      expect(actual).to.deep.equal(expected);
+    });
   });
 });
 

@@ -26,7 +26,8 @@ start
   = searchExpression
 
 commandKeywords
-  = $("shows" / "song" / "venue")
+  = $("shows" / "songs" / "venues")
+  / $("show" / "song" / "venue")
 
 filterKeywords
   = $("between" / "in" / "sort")
@@ -74,7 +75,7 @@ quote
   = $("'" / '"')
 
 word
-  = [a-zA-Z0-9_]+
+  = [a-zA-Z0-9_-]+
 
 __ = $(whitespace+)
 _  = __?
