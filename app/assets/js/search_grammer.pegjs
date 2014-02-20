@@ -25,17 +25,36 @@
 start
   = searchExpression
 
-searchExpression
-  = cm:commandMatch arg:argumentMatch? {return extend(cm, arg)}
-
-commands
+commandKeywords
   = $("shows" / "song" / "venue")
 
+filterKeywords
+  = $("in" / "sort")
+
+reserved
+  = commandKeywords
+  / filterKeywords
+
+searchExpression
+  = ce:commandExpr fe:filterExprs? {return extend(ce, fe)}
+
+commandExpr
+  = cm:commandMatch arg:argumentMatch? {return extend(cm, arg)}
+
 commandMatch
-  = match:$(_ commands _) {return {command: match.trim()}}
+  = match:$(_ commandKeywords _) {return {command: match.trim()}}
+
+filterExprs
+  = fes:filterExpr+ {return {filters: fes}}
+
+filterExpr
+  = fm:filterMatch arg:argumentMatch {return extend(fm, arg)}
+
+filterMatch
+  = match:$(_ filterKeywords _) {return {filter: match.trim()}}
 
 argumentMatch
-  = match:$(word) _ {return {argument: match}}
+  = !reserved match:$(word) _ {return {argument: match}}
   / match:stringLiteral _ {return {argument: match}}
 
 stringLiteral

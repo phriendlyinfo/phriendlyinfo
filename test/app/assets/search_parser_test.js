@@ -63,4 +63,43 @@ function itBehavesLikeACommand($command){
       expect(actual).to.deep.equal(expected);
     });
   });
+
+  context('with filters', function(){
+    it('correctly parses the `in` filter', function(){
+      var actual = parser.parse($command + ' in 2013')
+        , expected = {
+            command: $command,
+            filters: [
+              {filter: 'in', argument: '2013'}
+            ]
+          };
+
+      expect(actual).to.deep.equal(expected);
+    });
+
+    it('correctly parses the `sort` filter', function(){
+      var actual = parser.parse($command + ' sort asc')
+        , expected = {
+            command: $command,
+            filters: [
+              {filter: 'sort', argument: 'asc'}
+            ]
+          };
+
+      expect(actual).to.deep.equal(expected);
+    });
+
+    it('correctly parses multiple filters', function(){
+      var actual = parser.parse($command + ' in 2013 sort asc')
+        , expected = {
+            command: $command,
+            filters: [
+              {filter: 'in', argument: '2013'},
+              {filter: 'sort', argument: 'asc'}
+            ]
+          };
+
+      expect(actual).to.deep.equal(expected);
+    });
+  });
 }
