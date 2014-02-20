@@ -29,7 +29,7 @@ commandKeywords
   = $("shows" / "song" / "venue")
 
 filterKeywords
-  = $("in" / "sort")
+  = $("between" / "in" / "sort")
 
 reserved
   = commandKeywords
@@ -39,7 +39,7 @@ searchExpression
   = ce:commandExpr fe:filterExprs? {return extend(ce, fe)}
 
 commandExpr
-  = cm:commandMatch arg:argumentMatch? {return extend(cm, arg)}
+  = cm:commandMatch arg:arguments? {return extend(cm, arg)}
 
 commandMatch
   = match:$(_ commandKeywords _) {return {command: match.trim()}}
@@ -48,14 +48,17 @@ filterExprs
   = fes:filterExpr+ {return {filters: fes}}
 
 filterExpr
-  = fm:filterMatch arg:argumentMatch {return extend(fm, arg)}
+  = fm:filterMatch arg:arguments {return extend(fm, arg)}
 
 filterMatch
   = match:$(_ filterKeywords _) {return {filter: match.trim()}}
 
+arguments
+  = args:argumentMatch+ {return {arguments: args}}
+
 argumentMatch
-  = !reserved match:$(word) _ {return {argument: match}}
-  / match:stringLiteral _ {return {argument: match}}
+  = !reserved match:$(word) _ {return match}
+  / match:stringLiteral _ {return match}
 
 stringLiteral
   = match:$(quote [^'"]+ quote) {return match.match(/^['"](.+)['"]$/)[1]}
