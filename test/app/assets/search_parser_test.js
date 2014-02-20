@@ -114,4 +114,36 @@ function itBehavesLikeACommand($command){
       expect(actual).to.deep.equal(expected);
     });
   });
+
+  context('with qualifiers', function(){
+    it('correctly parses the `all` qualifier', function(){
+      var actual = parser.parse('all ' + $command)
+        , expected = {
+          command: $command,
+          qualifier: 'all'
+        };
+
+      expect(actual).to.deep.equal(expected);
+    });
+
+    it('correctly parses the `first` qualifier', function(){
+      var actual = parser.parse('first ' + $command)
+        , expected = {
+          command: $command,
+          qualifier: 'first'
+        };
+
+      expect(actual).to.deep.equal(expected);
+    });
+
+    it('correctly parses the `last` qualifier', function(){
+      var actual = parser.parse('last ' + $command)
+        , expected = {
+          command: $command,
+          qualifier: 'last'
+        };
+
+      expect(actual).to.deep.equal(expected);
+    });
+  });
 }

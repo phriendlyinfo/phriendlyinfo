@@ -31,18 +31,25 @@ commandKeywords
 filterKeywords
   = $("between" / "in" / "sort")
 
+qualifiers
+  = $("all" / "first" / "last")
+
 reserved
   = commandKeywords
   / filterKeywords
+  / qualifiers
 
 searchExpression
-  = ce:commandExpr fe:filterExprs? {return extend(ce, fe)}
+  = q:qualifierMatch? ce:commandExpr fe:filterExprs? {return extend(ce, q, fe)}
 
 commandExpr
   = cm:commandMatch arg:arguments? {return extend(cm, arg)}
 
 commandMatch
   = match:$(_ commandKeywords _) {return {command: match.trim()}}
+
+qualifierMatch
+  = match:$(_ qualifiers _) {return {qualifier: match.trim()}}
 
 filterExprs
   = fes:filterExpr+ {return {filters: fes}}
