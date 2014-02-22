@@ -13,13 +13,20 @@
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-  <div class="top-rail"></div>
 
   <div class="main-container animated fade-in">
-    <header>
+    <header class="clearfix">
       <h1>
         <a href="/">PhriendlyInfo</a>
       </h1>
+
+      <form class="search" autocomplete="off">
+        <span class="fui-search search-icon"></span>
+        <label for="search">Search</label>
+        <input type="text" id="search" placeholder="all shows in 1997" autofocus>
+      </form>
+
+      <nav class="fui-list"></nav>
     </header>
   </div>
 
