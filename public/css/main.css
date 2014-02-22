@@ -194,7 +194,7 @@ header nav {
   width: 100%;
 }
 
-.info {
+.greeting {
   margin: 40px 0 0 220px;
   width: 82%;
   height: 250px;
@@ -204,22 +204,21 @@ header nav {
   -ms-user-select: none;
 }
 
-.info h2, .info h3, .info p {
+.greeting h2, .greeting h3, .greeting p {
   font-weight: 300;
   text-align: center;
 }
 
-.info h2 {
+.greeting h2 {
   font-size: 50px;
 }
 
-.info h3 {
+.greeting h3 {
   font-size: 28px;
 }
 
-.info p {
 
-}
+
 
 @media all and (max-width: 1600px) {
   .info {
