@@ -205,10 +205,6 @@ header form {
   margin-top: 111px;
 }
 
-.results, .greeting {
-  margin-left: 220px;
-}
-
 .greeting {
   cursor: default;
   -webkit-user-select: none;
