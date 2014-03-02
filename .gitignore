@@ -1,4 +1,4 @@
 .DS_Store
 node_modules/
 core/config/index.json
-app/assets/js/search_parser.js
+components/search/parser.js

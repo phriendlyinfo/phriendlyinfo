@@ -4,7 +4,6 @@ BIN = node_modules/.bin
 NODE = node --harmony
 MOCHA = $(BIN)/mocha
 PEGJS = $(BIN)/pegjs --export-var 'module.exports'
-JS_ASSETS = app/assets/js
 
 db-recreate: db-delete db-migrate db-seed
 
@@ -26,7 +25,7 @@ prod:
 build: build-parser
 
 build-parser:
-	@$(PEGJS) $(JS_ASSETS)/search_grammar.pegjs $(JS_ASSETS)/search_parser.js
+	@$(PEGJS) components/search/grammar.pegjs components/search/parser.js
 
 test: build
 	@$(MOCHA) --reporter spec --recursive --colors --harmony-generators

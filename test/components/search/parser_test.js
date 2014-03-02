@@ -1,7 +1,7 @@
 require(require('path').join('..', '..', '..', 'core', 'globals'));
 
 var expect = require('chai').expect
-  , parser = requireRoot('app/assets/js/search_parser');
+  , parser = requireRoot('components/search/parser');
 
 describe('SearchParser', function(){
   describe('"show[s]" command', function(){
