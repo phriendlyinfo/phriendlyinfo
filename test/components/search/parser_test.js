@@ -12,7 +12,8 @@ describe('SearchParser', function(){
         , actual = parser.parse(search)
         , expected = {
             command: 'show',
-            qualifier: {qualifier: 'first'},
+            qualifier: {qualifier: 'first', arguments: []},
+            arguments: [],
             filters: [
               {filter: 'in', arguments: ['2013']}
             ]
@@ -64,14 +65,14 @@ describe('SearchParser', function(){
 function itBehavesLikeACommand($command){
   it('is correctly parsed', function(){
     var actual = parser.parse($command)
-      , expected = {command: $command};
+      , expected = {command: $command, arguments: []};
 
     expect(actual).to.deep.equal(expected);
   });
 
   it('removes surrounding whitespace', function(){
     var actual = parser.parse(' \n\n ' + $command + '  \n')
-      , expected = {command: $command};
+      , expected = {command: $command, arguments: []};
 
     expect(actual).to.deep.equal(expected);
   });
@@ -113,6 +114,7 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse($command + ' in 2013')
         , expected = {
             command: $command,
+            arguments: [],
             filters: [
               {filter: 'in', arguments: ['2013']}
             ]
@@ -125,6 +127,7 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse($command + ' sort asc')
         , expected = {
             command: $command,
+            arguments: [],
             filters: [
               {filter: 'sort', arguments: ['asc']}
             ]
@@ -137,6 +140,7 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse($command + ' between 1995 1996')
         , expected = {
             command: $command,
+            arguments: [],
             filters: [
               {filter: 'between', arguments: ['1995', '1996']}
             ]
@@ -149,6 +153,7 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse($command + ' in 2013 sort asc')
         , expected = {
             command: $command,
+            arguments: [],
             filters: [
               {filter: 'in', arguments: ['2013']},
               {filter: 'sort', arguments: ['asc']}
@@ -164,7 +169,8 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse('first ' + $command)
         , expected = {
           command: $command,
-          qualifier: {qualifier: 'first'}
+          arguments: [],
+          qualifier: {qualifier: 'first', arguments: []}
         };
 
       expect(actual).to.deep.equal(expected);
@@ -174,6 +180,7 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse('first 7 ' + $command)
         , expected = {
           command: $command,
+          arguments: [],
           qualifier: {qualifier: 'first', arguments: ['7']}
         };
 
@@ -185,7 +192,8 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse('last ' + $command)
         , expected = {
           command: $command,
-          qualifier: {qualifier: 'last'}
+          arguments: [],
+          qualifier: {qualifier: 'last', arguments: []}
         };
 
       expect(actual).to.deep.equal(expected);
@@ -195,6 +203,7 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse('last 5 ' + $command)
         , expected = {
           command: $command,
+          arguments: [],
           qualifier: {qualifier: 'last', arguments: ['5']}
         };
 

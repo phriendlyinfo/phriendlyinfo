@@ -19,6 +19,11 @@
 
     return first;
   }
+
+  function extendWithArguments(){
+    var args = [{arguments: []}].concat(slice.call(arguments));
+    return extend.apply(null, args);
+  }
 }
 
 
@@ -44,13 +49,13 @@ searchExpression
   = q:qualifierExpr? ce:commandExpr fe:filterExprs? {return extend(ce, q, fe)}
 
 commandExpr
-  = cm:commandMatch arg:arguments? {return extend(cm, arg)}
+  = cm:commandMatch arg:arguments? {return extendWithArguments(cm, arg)}
 
 commandMatch
   = match:$(_ commandKeywords _) {return {command: match.trim()}}
 
 qualifierExpr
-  = qm:qualifierMatch arg:arguments? {return {qualifier: extend(qm, arg)}}
+  = qm:qualifierMatch arg:arguments? {return {qualifier: extendWithArguments(qm, arg)}}
 
 qualifierMatch
   = match:$(_ qualifiers _) {return {qualifier: match.trim()}}

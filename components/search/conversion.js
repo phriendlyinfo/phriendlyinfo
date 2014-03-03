@@ -59,15 +59,15 @@ function buildDefaultQuery(){
 
 function buildShowQuery(search){
   var filters = search.filters || []
-    , qualifier = search.qualifier
+    , qualifier = search.qualifier || {}
     , query;
 
   query = filters.map(function(filter){
     return $filters[filter.filter](filter);
   });
 
-  if ($qualifiers[qualifier])
-    query.push($qualifiers[qualifier]());
+  if ($qualifiers[qualifier.qualifier])
+    query.push($qualifiers[qualifier.qualifier](qualifier));
 
   return query.reduce(function(query, clause){
     return extend(query, clause);
@@ -82,8 +82,8 @@ function buildShowQuery(search){
  * @api private
  */
 
-function buildFirstQualifier(){
-  return {size: 1}
+function buildFirstQualifier(qualifier){
+  return {size: +qualifier.arguments[0] || 1}
 }
 
 
@@ -95,9 +95,9 @@ function buildFirstQualifier(){
  * @api private
  */
 
-function buildLastQualifier(){
+function buildLastQualifier(qualifier){
   return {
-    size: 1,
+    size: +qualifier.arguments[0] || 1,
     sort: buildSort('date', 'desc')
   }
 }
