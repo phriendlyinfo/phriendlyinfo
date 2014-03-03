@@ -12,7 +12,7 @@ describe('SearchParser', function(){
         , actual = parser.parse(search)
         , expected = {
             command: 'show',
-            qualifier: 'first',
+            qualifier: {qualifier: 'first'},
             filters: [
               {filter: 'in', arguments: ['2013']}
             ]
@@ -164,17 +164,38 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse('first ' + $command)
         , expected = {
           command: $command,
-          qualifier: 'first'
+          qualifier: {qualifier: 'first'}
+        };
+
+      expect(actual).to.deep.equal(expected);
+    });
+
+    it('correctly parses the `first` qualifier with arguments', function(){
+      var actual = parser.parse('first 7 ' + $command)
+        , expected = {
+          command: $command,
+          qualifier: {qualifier: 'first', arguments: ['7']}
+        };
+
+      expect(actual).to.deep.equal(expected);
+    });
+
+
+    it('correctly parses the `last` qualifier', function(){
+      var actual = parser.parse('last ' + $command)
+        , expected = {
+          command: $command,
+          qualifier: {qualifier: 'last'}
         };
 
       expect(actual).to.deep.equal(expected);
     });
 
     it('correctly parses the `last` qualifier', function(){
-      var actual = parser.parse('last ' + $command)
+      var actual = parser.parse('last 5 ' + $command)
         , expected = {
           command: $command,
-          qualifier: 'last'
+          qualifier: {qualifier: 'last', arguments: ['5']}
         };
 
       expect(actual).to.deep.equal(expected);
