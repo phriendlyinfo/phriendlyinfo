@@ -128,7 +128,7 @@ function buildInFilter(filter){
  */
 
 function buildSortFilter(filter){
-  return buildSort('date', filter.sort);
+  return {sort: buildSort('date', filter.arguments[0])};
 }
 
 
@@ -186,5 +186,5 @@ function buildRange(field, attrs){
 function buildSort(field, order) {
   var sort = {};
   sort[field] = {order: order || 'asc'}
-  return [sort];
+  return sort;
 }

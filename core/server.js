@@ -1,13 +1,17 @@
 var app
-  , koa = require('koa')
-  , serve = require('koa-static')
-  , router = require('koa-router')
+  , bodyParser = require('koa-body-parser')
   , config = requireRoot('core/config')
-  , routes = requireRoot('core/routes');
+  , koa = require('koa')
+  , koaqs = require('koa-qs')
+  , router = require('koa-router')
+  , routes = requireRoot('core/routes')
+  , serve = require('koa-static');
 
 app = koa();
 
+koaqs(app);
 app.use(serve(APP_ROOT + '/public'));
+app.use(bodyParser());
 app.use(router(app));
 routes.register(app);
 

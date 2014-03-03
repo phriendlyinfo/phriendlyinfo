@@ -11,8 +11,10 @@
   , "dependencies":
     {
         "koa": "~0.4"
+      , "koa-body-parser": "~1.0"
       , "koa-router": "~3.0"
       , "koa-static": "~1.4"
+      , "koa-qs": "~1.0"
       , "elasticsearch": "~1.5"
       , "underscore": "~1.6"
     }
