@@ -113,8 +113,8 @@ function buildLastQualifier(qualifier){
 
 function buildInFilter(filter){
   var year = filter.arguments[0]
-    , from = canonicalDate(new Date(year))
-    , to = canonicalDate(new Date(+year + 1))
+    , from = canonicalDate(new Date(year), 0)
+    , to = canonicalDate(new Date(+year + 1, 0));
   return {filter: buildDateRange(from, to)};
 }
 

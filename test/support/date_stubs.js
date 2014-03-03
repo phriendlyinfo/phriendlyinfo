@@ -1,25 +1,42 @@
-var isCanonicalDate = requireRoot('core/lib/utils/date').isCanonicalDate
-  , isString = require('underscore').isString
+var canonicalDate = requireRoot('core/lib/utils/date').canonicalDate
   , originalDateConstructor = global.Date;
 
-exports.stubDate = function(y, m, d, h, mm, s, ms){
+exports.stubDate = function(date){
   global.Date = function(){
-    if (isString(y) && isCanonicalDate(y))
-      return new originalDateConstructor(y);
-    var date = new originalDateConstructor();
-    date.setUTCFullYear(y);
-    date.setUTCMonth(m);
-    date.setUTCDate(d);
-    date.setUTCHours(h, mm, s, ss);
-    return date;
+    if (!arguments.length)
+      return copy(date);
+
+    if (arguments[0].toString().length !== 4)
+      return new originalDateConstructor(arguments[0]);
+
+    return new originalDateConstructor(
+      arguments[0],
+      arguments[1] || 0,
+      arguments[2] || 1,
+      arguments[3] || 1,
+      arguments[4] || 1,
+      arguments[5] || 1,
+      arguments[6] || 1
+    );
   }
+
   Date.now = function(){
-    return isString(y) && isCanonicalDate(y)
-      ? originalDateConstructor.parse(y)
-      : originalDateConstructor.UTC(y, m, d, h, mm, s, ms);
+    return originalDateConstructor.parse(canonicalDate(date));
   }
 }
 
 exports.unstubDate = function(){
   global.Date = originalDateConstructor;
 };
+
+function copy(date){
+  return new originalDateConstructor(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    date.getHours(),
+    date.getMinutes(),
+    date.getSeconds(),
+    date.getMilliseconds()
+  );
+}

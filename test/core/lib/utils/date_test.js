@@ -23,7 +23,7 @@ describe('DateUtils', function(){
 
     context('without an argument', function(){
       it('formats the current date as YYYY-MM-DD', function(){
-        stubDate('2013-10-31');
+        stubDate(new Date('2013-10-31'));
         expect(canonicalDate()).to.equal('2013-10-31');
       });
     });
