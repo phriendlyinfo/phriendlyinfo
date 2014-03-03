@@ -33,7 +33,7 @@ filterKeywords
   = $("between" / "in" / "sort")
 
 qualifiers
-  = $("all" / "first" / "last")
+  = $("first" / "last")
 
 reserved
   = commandKeywords

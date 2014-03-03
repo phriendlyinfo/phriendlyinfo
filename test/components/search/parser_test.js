@@ -160,16 +160,6 @@ function itBehavesLikeACommand($command){
   });
 
   context('with qualifiers', function(){
-    it('correctly parses the `all` qualifier', function(){
-      var actual = parser.parse('all ' + $command)
-        , expected = {
-          command: $command,
-          qualifier: 'all'
-        };
-
-      expect(actual).to.deep.equal(expected);
-    });
-
     it('correctly parses the `first` qualifier', function(){
       var actual = parser.parse('first ' + $command)
         , expected = {
