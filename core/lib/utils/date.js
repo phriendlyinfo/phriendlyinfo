@@ -1,4 +1,4 @@
-var isString = require('underscore').isString;
+var isString = require('lodash-node/modern/objects/isString');
 
 /**
  * Returns true if argument is a string
