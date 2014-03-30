@@ -1,5 +1,5 @@
 var $commands, $filters, $qualifiers
-  , extend = require('lodash-node/modern/objects/assign')
+  , extend = require('underscore').extend
   , canonicalDate = requireRoot('core/lib/utils/date').canonicalDate;
 
 $commands = {};

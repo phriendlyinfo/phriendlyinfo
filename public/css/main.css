@@ -156,7 +156,12 @@ header nav {
  * Search
  */
 
-header form {
+form {
+  padding: 0;
+  margin: 0;
+}
+
+.search-container {
   position: absolute;
   width: 100%;
   padding: 0 0 0 230px;
@@ -170,18 +175,18 @@ header form {
   position: absolute;
 }
 
-.search label {
+.search-container label {
   margin-left: 35px;
   line-height: 70px;
   position: absolute;
 }
 
-.search label, .search input {
+.search-container label, .search-container input {
   font-size: 22px;
   font-weight: 300;
 }
 
-.search input {
+.search-container form input {
   background-color: #ECF0F1;
   border: none;
   box-shadow: none;
@@ -202,7 +207,7 @@ header form {
 
 .content {
   width: 100%;
-  margin-top: 111px;
+  margin: 111px 0 50px 0;
 }
 
 .greeting {
@@ -225,6 +230,13 @@ header form {
   font-size: 28px;
 }
 
+.results {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f8f8f8;
+  font-weight: 300;
+}
+
 .results ul {
   list-style: none;
   padding: 0;
@@ -232,24 +244,21 @@ header form {
 }
 
 .results li {
-  width: 180px;
-  height: 180px;
   padding: 10px;
-  background-color: #f8f8f8;
-  float: left;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.results li:last-child {
+  border-bottom: none;
 }
 
 .results .date, .results .location {
-  display: block;
   text-align: center;
-  font-weight: 300;
+  display: block;
 }
 
 .results .date {
-  margin-top: 30px;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .results .location {
@@ -262,14 +271,14 @@ header form {
     border-right: none;
   }
 
-  header form {
+  .search-container {
     padding: 0 15px;
     top: 71px;
     border-bottom: 1px solid #ccc;
     background-color: #ECF0F1;
   }
 
-  .search input {
+  .search-container input {
     padding-right: 5px;
   }
 
