@@ -10,10 +10,14 @@
 
   , "dependencies":
     {
-        "koa": "~0.4"
+        "elasticsearch": "~1.5"
+      , "koa": "~0.5"
+      , "koa-body-parser": "~1.0"
       , "koa-router": "~3.0"
       , "koa-static": "~1.4"
-      , "elasticsearch": "~1.5"
+      , "koa-qs": "~1.0"
+      , "react": "~0.10"
+      , "backbone": "~1.1"
       , "underscore": "~1.6"
     }
 
@@ -21,9 +25,11 @@
     {
         "chai": "~1.9"
       , "co": "~3.0"
+      , "commonjs-everywhere": "~0.9"
       , "globber": "~0.1"
       , "mocha": "~1.17"
       , "pegjs": "~0.8"
+      , "react-tools": "~0.10"
     }
 
   , "repository":
