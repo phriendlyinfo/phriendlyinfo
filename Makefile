@@ -18,10 +18,10 @@ db-migrate:
 db-seed:
 	@$(NODE) scripts/db/seed $(SEED_PATH)
 
-dev:
+dev: build
 	@$(NODE) index.js
 
-prod:
+prod: build
 	@NODE_ENV=production $(NODE) index.js
 
 build: build-parser build-views bundle
