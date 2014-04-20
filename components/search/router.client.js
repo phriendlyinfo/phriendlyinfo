@@ -1,6 +1,5 @@
 var Backbone = require('backbone')
   , FormView = require('./views/form')
-  , Parser = require('./parser')
   , Result = require('./result.client')
   , Results = require('./results.client')
   , ResultsView = require('./views/results');
@@ -28,13 +27,6 @@ module.exports = Backbone.Router.extend({
   },
 
   handleSubmit: function(search) {
-    try {
-      var parsedSearch = Parser.parse(search);
-    } catch (e) {
-      this.form.trigger('error', {message: 'malformed search', error: e.message});
-      return
-    }
-
-    this.results.fetch(parsedSearch);
+    this.results.fetch(search);
   }
 });

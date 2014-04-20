@@ -4,9 +4,9 @@ var Collection = require('backbone').Collection
 module.exports = Collection.extend({
   url: '/search',
 
-  fetch: function(parsedSearch) {
+  fetch: function(search) {
     return fetch.call(this, {
-      data: parsedSearch,
+      data: {query: search},
       reset: true,
       type: 'POST'
     });
