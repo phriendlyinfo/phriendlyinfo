@@ -30,9 +30,9 @@ describe('Conversion', function(){
                     }
                   }
                 },
-                sort: [
-                  {date: {order: 'asc'}}
-                ]
+                sort: {
+                  date: {order: 'asc'}
+                }
               };
 
           expect(actual).to.deep.equal(expected);
@@ -53,9 +53,9 @@ describe('Conversion', function(){
                     }
                   }
                 },
-                sort: [
-                  {date: {order: 'asc'}}
-                ]
+                sort: {
+                  date: {order: 'asc'}
+                }
               };
 
           expect(actual).to.deep.equal(expected);
@@ -74,9 +74,9 @@ describe('Conversion', function(){
                     }
                   }
                 },
-                sort: [
-                  {date: {order: 'asc'}}
-                ]
+                sort: {
+                  date: {order: 'asc'}
+                }
               };
 
           expect(actual).to.deep.equal(expected);
@@ -95,9 +95,9 @@ describe('Conversion', function(){
                     }
                   }
                 },
-                sort: [
-                  {date: {order: 'desc'}}
-                ]
+                sort:{
+                  date: {order: 'desc'}
+                }
               };
 
           expect(actual).to.deep.equal(expected);
@@ -116,9 +116,9 @@ describe('Conversion', function(){
                     }
                   }
                 },
-                sort: [
-                  {date: {order: 'desc'}}
-                ]
+                sort: {
+                  date: {order: 'desc'}
+                }
               };
 
           expect(actual).to.deep.equal(expected);
@@ -139,9 +139,9 @@ describe('Conversion', function(){
                     }
                   }
                 },
-                sort: [
-                  {date: {order: 'asc'}}
-                ]
+                sort: {
+                  date: {order: 'asc'}
+                }
               };
 
           expect(actual).to.deep.equal(expected);
