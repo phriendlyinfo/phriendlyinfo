@@ -10,7 +10,7 @@
 
   , "dependencies":
     {
-        "elasticsearch": "~1.5"
+        "elasticsearch": "~2.1"
       , "koa": "~0.5"
       , "koa-body-parser": "~1.0"
       , "koa-router": "~3.0"
