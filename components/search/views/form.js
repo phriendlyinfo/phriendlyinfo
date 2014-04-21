@@ -3,6 +3,10 @@ var Backbone = require('backbone')
   , isEmpty = require('underscore').isEmpty;
 
 module.exports = Backbone.View.extend({
+  initialize: function () {
+    this.on('error', this.onError, this);
+  },
+
   render: function() {
     React.renderComponent(Form({onSubmit: this.onSubmit.bind(this)}), this.$el[0]);
   },
@@ -12,5 +16,9 @@ module.exports = Backbone.View.extend({
       console.log('empty');
     else
       this.trigger('submit', value);
+  },
+
+  onError: function() {
+    throw new Error('TODO: write me');
   }
 });

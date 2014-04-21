@@ -11,22 +11,31 @@ module.exports = Backbone.Router.extend({
     });
 
     form.render();
-    form.on('submit', this.handleSubmit, this);
+    form.on('submit', this.onSearchSubmit, this);
 
-    this.results = new Results({
-      model: Result
-    });
+    this.results = new Results({model: Result});
+    this.results.on('error', this.onSearchError, this);
+    this.results.on('reset', this.onSearchSuccess, this);
 
-    var resultsView = new ResultsView({
+    this.resultsView = new ResultsView({
       el: $('#js-content')
     });
-
-    this.results.on('reset', function(collection) {
-      resultsView.render(collection.models);
-    }, this)
   },
 
-  handleSubmit: function(search) {
+  onSearchSubmit: function(search) {
     this.results.fetch(search);
+  },
+
+  onSearchError: function(results, xhr) {
+    var error = xhr.responseJSON.error;
+
+    if ('malformed search' == error)
+      this.form.trigger('error');
+    else
+      this.resultsView.trigger('error');
+  },
+
+  onSearchSuccess: function(results) {
+    this.resultsView.render(results.models);
   }
 });

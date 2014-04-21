@@ -17,7 +17,7 @@ function *post(){
   try {
     parsedSearch = Parser.parse(this.request.body.query);
   } catch (e) {
-    this.body = createError(e, 'Unable to parse search');
+    this.body = {error: 'malformed search'}
     this.status = 'bad request';
     return
   }
@@ -26,7 +26,7 @@ function *post(){
     var query = toQuery(parsedSearch);
     response = yield perform.bind(null, query);
   } catch(e) {
-    this.body = createError(e, 'Error while performing query');
+    this.body = {error: 'query exception'}
     this.status = 'internal server error';
     return
   }
@@ -43,11 +43,4 @@ function present(response){
   return response.hits.hits.map(function(hit){
     return hit._source;
   });
-}
-
-function createError(exception, message) {
-  var error = new Error(message);
-  error.exception = exception
-  error.exceptionMessage = exception.message
-  return error;
 }
