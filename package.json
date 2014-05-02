@@ -27,8 +27,8 @@
       , "co": "~3.0"
       , "commonjs-everywhere": "~0.9"
       , "globber": "~0.1"
+      , "jison": "~0.4"
       , "mocha": "~1.18"
-      , "pegjs": "~0.8"
       , "react-tools": "~0.10"
     }
 

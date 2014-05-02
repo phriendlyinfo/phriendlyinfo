@@ -65,14 +65,7 @@ describe('SearchParser', function(){
 function itBehavesLikeACommand($command){
   it('is correctly parsed', function(){
     var actual = parser.parse($command)
-      , expected = {command: $command, arguments: []};
-
-    expect(actual).to.deep.equal(expected);
-  });
-
-  it('removes surrounding whitespace', function(){
-    var actual = parser.parse(' \n\n ' + $command + '  \n')
-      , expected = {command: $command, arguments: []};
+      , expected = {command: $command, filters: [], arguments: []};
 
     expect(actual).to.deep.equal(expected);
   });
@@ -82,6 +75,7 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse($command + ' fluffhead')
         , expected = {
             command: $command,
+            filters: [],
             arguments: ['fluffhead']
           };
 
@@ -92,17 +86,8 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse($command + ' "madison square garden"')
         , expected = {
             command: $command,
+            filters: [],
             arguments: ['madison square garden']
-          };
-
-      expect(actual).to.deep.equal(expected);
-    });
-
-    it('ignores trailing whitespace', function(){
-      var actual = parser.parse($command + ' fluffhead  \n ')
-        , expected = {
-            command: $command,
-            arguments: ['fluffhead']
           };
 
       expect(actual).to.deep.equal(expected);
@@ -169,6 +154,7 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse('first ' + $command)
         , expected = {
           command: $command,
+          filters: [],
           arguments: [],
           qualifier: {qualifier: 'first', arguments: []}
         };
@@ -180,6 +166,7 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse('first 7 ' + $command)
         , expected = {
           command: $command,
+          filters: [],
           arguments: [],
           qualifier: {qualifier: 'first', arguments: ['7']}
         };
@@ -192,6 +179,7 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse('last ' + $command)
         , expected = {
           command: $command,
+          filters: [],
           arguments: [],
           qualifier: {qualifier: 'last', arguments: []}
         };
@@ -203,6 +191,7 @@ function itBehavesLikeACommand($command){
       var actual = parser.parse('last 5 ' + $command)
         , expected = {
           command: $command,
+          filters: [],
           arguments: [],
           qualifier: {qualifier: 'last', arguments: ['5']}
         };
