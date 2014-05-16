@@ -13,17 +13,16 @@ module.exports = Backbone.Router.extend({
     form.render();
     form.on('submit', this.onSearchSubmit, this);
 
-    this.results = new Results({model: Result});
-    this.results.on('error', this.onSearchError, this);
-    this.results.on('reset', this.onSearchSuccess, this);
-
     this.resultsView = new ResultsView({
       el: $('#js-content')
     });
   },
 
   onSearchSubmit: function(search) {
-    this.results.fetch(search);
+    var results = new Results({model: Result});
+    results.on('error', this.onSearchError, this);
+    results.on('success', this.onSearchSuccess, this);
+    results.fetch(search);
   },
 
   onSearchError: function(results, xhr) {
@@ -36,6 +35,6 @@ module.exports = Backbone.Router.extend({
   },
 
   onSearchSuccess: function(results) {
-    this.resultsView.render(results.models);
+    this.resultsView.render(results);
   }
 });

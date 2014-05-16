@@ -40,7 +40,12 @@ function perform(query, cb){
 }
 
 function present(response){
-  return response.hits.hits.map(function(hit){
+  var hits = response.hits.hits.map(function(hit){
     return hit._source;
   });
+
+  return {
+    hits: hits,
+    total: response.hits.total
+  }
 }
