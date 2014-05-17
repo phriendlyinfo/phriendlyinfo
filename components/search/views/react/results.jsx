@@ -16,6 +16,7 @@ module.exports = React.createClass({
                   {result.get('venue').name} <br />
                   {result.get('venue').location.city}, {result.get('venue').location.state}
                 </span>
+                <p className="show-notes" dangerouslySetInnerHTML={{__html: result.get('pnet').setlistNotes}} />
               </li>
             );
           }, this)}

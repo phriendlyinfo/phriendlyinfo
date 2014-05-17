@@ -194,7 +194,6 @@ form {
 .results {
   max-width: 600px;
   margin: 0 auto;
-  font-weight: 300;
 }
 .results ul {
   list-style: none;
@@ -205,7 +204,7 @@ form {
   background-color: #fff;
   border: 1px solid #e1e8ed;
   border-top: none;
-  padding: 10px;
+  padding: 10px 15px;
 }
 .results .heading {
   padding: 0 10px;
@@ -227,6 +226,10 @@ form {
 }
 .results .location {
   font-size: 14px;
+}
+.results .show-notes {
+  font-weight: normal;
+  font-size: 16px;
 }
 /**
  * Media queries
