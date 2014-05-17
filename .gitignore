@@ -4,3 +4,4 @@ core/config/index.json
 components/search/parser.js
 components/*/views/react/*.js
 public/js/main.js
+public/css/main.css
