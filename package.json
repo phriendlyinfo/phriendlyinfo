@@ -30,6 +30,7 @@
       , "jison": "~0.4"
       , "mocha": "~1.18"
       , "react-tools": "~0.10"
+      , "stylus": "*"
     }
 
   , "repository":

@@ -1,0 +1,283 @@
+/**
+ * ========
+ * Variabes
+ * ========
+ */
+
+/**
+ * Colors
+ */
+
+metalic-gray = #f5f8fa
+border-gray = #e1e8ed
+main-font-color = #354A55
+dark-red = #C0392B
+light-red = #E74C3C
+
+
+/**
+ * Others
+ */
+
+lato = 'Lato'
+
+/**
+ * ====
+ * Main
+ * ====
+ */
+
+*
+  box-sizing: border-box
+
+body
+  font-family: lato, helvetica, sans-serif
+  padding: 0
+  margin: 0
+  background-color: metalic-gray
+  color: main-font-color
+
+ul
+  list-style: none
+  padding: 0
+  margin: 0
+
+
+/**
+ * Helper classes
+ */
+
+.hide
+  display: none !important
+
+.show
+  display: block !important
+
+.clearfix:before, .clearfix:after
+  display: table
+  content: " "
+
+.clearfix:after
+  clear: both
+
+
+/**
+ * Animations
+ */
+
+.animated
+  -webkit-animation-duration: 1s
+  animation-duration: 1s
+  -webkit-animation-fill-mode: both
+  animation-fill-mode: both
+
+
+@keyframes fade-in
+  0%
+    opacity: 0
+
+  100%
+    opacity: 1
+
+.fade-in
+  -webkit-animation-name: fade-in
+  animation-name: fade-in
+
+
+/**
+ * Application
+ */
+
+.main-container
+  width: 100%
+  margin: 0
+  padding: 0
+
+a, a:visited, a:active
+  color: dark-red
+
+a:hover
+  transition: .25s linear
+  color: light-red
+  border-bottom: 1px dotted light-red
+
+
+/**
+ * Header
+ */
+
+header
+  font-weight: 300
+  border-bottom: 1px solid border-gray
+  background-color: metalic-gray
+  padding: 0
+  margin: 0
+  width: 100%
+  height: 70px
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+
+header h1
+  font-size: 32px
+  margin: 0
+  line-height: 70px
+  font-weight: 300
+  border-right: 1px solid border-gray
+  padding: 0 15px
+  width: 220px
+  z-index: 10000
+  position: absolute
+
+header h1 a, header h1 a:visited, header h1 a:active
+  color: main-font-color
+  text-decoration: none
+  border: none
+
+header h1 a:hover
+  color: dark-red
+  border: none
+
+header nav
+  position: absolute
+  top: 0
+  right: 20px
+  color: main-font-color
+  font-size: 26px
+  line-height: 70px
+  cursor: pointer
+  z-index: 100
+
+
+/**
+ * Search
+ */
+
+form
+  padding: 0
+  margin: 0
+
+.search-icon
+  font-size: 24px
+  line-height: 70px
+  margin-right: 10px
+  position: absolute
+
+.search-container
+  position: absolute
+  width: 100%
+  padding: 0 0 0 230px
+  top: 0
+
+  label
+    margin-left: 35px
+    line-height: 70px
+    position: absolute
+
+  label, input
+    font-size: 22px
+    font-weight: 300
+
+  form input
+    background-color: metalic-gray
+    border: none
+    box-shadow: none
+    color: main-font-color
+    font-family: lato, helvetica, sans-serif
+    outline: none
+    vertical-align: middle
+    height: 69px
+    line-height: 30px
+    width: 100%
+    padding: 0 70px 0 106px
+
+
+/**
+ * Content
+ */
+
+.content
+  width: 100%
+  margin: 50px 0 50px 0
+
+.greeting
+  cursor: default
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+
+  h2, h3, p
+    font-weight: 300
+    text-align: center
+
+  h2
+    font-size: 50px
+
+  h3
+    font-size: 28px
+
+.results
+  max-width: 600px
+  margin: 0 auto
+  font-weight: 300
+
+  ul
+    list-style: none
+    padding: 0
+    margin: 0
+
+  li
+    background-color: white
+    border: 1px solid border-gray
+    border-top: none
+    padding: 10px
+
+  .heading
+    padding: 0 10px
+    border: 1px solid border-gray
+    border-top-right-radius: 3px
+    border-top-left-radius: 3px
+
+    h5
+      font-weight: 300
+      font-size: 20px
+
+  .date, .location
+    text-align: center
+    display: block
+
+  .date
+    font-size: 22px
+
+  .location
+    font-size: 14px
+
+
+/**
+ * Media queries
+ */
+
+@media all and (max-width: 750px)
+  header h1
+    border-right: none
+
+  .search-container
+    padding: 0 15px
+    top: 71px
+    border-bottom: 1px solid border-gray
+    background-color: metalic-gray
+
+    form input
+      padding-right: 0px
+
+  .content
+    width: 100%
+    margin-top: 111px
+
+  .greeting, .results
+    width: 100%
+    margin-left: 0
+    padding: 0 20px
+
+  .results ul
+    margin: 0 auto
