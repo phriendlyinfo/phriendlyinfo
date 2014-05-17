@@ -7,7 +7,7 @@ module.exports = Backbone.View.extend({
   },
 
   render: function(results){
-    React.renderComponent(Results({results: results.hits}), this.$el[0]);
+    React.renderComponent(Results({total: results.total, results: results.hits}), this.$el[0]);
   },
 
   onError: function() {

@@ -6,7 +6,7 @@ body {
   font-family: 'Lato', helvetica, sans-serif;
   padding: 0;
   margin: 0;
-  background-color: #E5EAEC;
+  background-color: #f5f8fa;
   color: #354A55;
 }
 
@@ -107,8 +107,8 @@ a:hover {
 
 header {
   font-weight: 300;
-  border-bottom: 1px solid #ccc;
-  background-color: #ECF0F1;
+  border-bottom: 1px solid #e1e8ed;
+  background-color: #f5f8fa;
   padding: 0;
   margin: 0;
   width: 100%;
@@ -123,7 +123,7 @@ header h1 {
   margin: 0;
   line-height: 70px;
   font-weight: 300;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #e1e8ed;
   padding: 0 15px;
   width: 220px;
   z-index: 10000;
@@ -187,7 +187,7 @@ form {
 }
 
 .search-container form input {
-  background-color: #ECF0F1;
+  background-color: #f5f8fa;
   border: none;
   box-shadow: none;
   color: #354A55;
@@ -207,7 +207,7 @@ form {
 
 .content {
   width: 100%;
-  margin: 111px 0 50px 0;
+  margin: 50px 0 50px 0;
 }
 
 .greeting {
@@ -231,9 +231,8 @@ form {
 }
 
 .results {
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
-  background-color: #f8f8f8;
   font-weight: 300;
 }
 
@@ -244,12 +243,22 @@ form {
 }
 
 .results li {
+  background-color: #fff;
+  border: 1px solid #e1e8ed;
+  border-top: none;
   padding: 10px;
-  border-bottom: 1px solid #ccc;
 }
 
-.results li:last-child {
-  border-bottom: none;
+.results .heading {
+  padding: 0 10px;
+  border: 1px solid #e1e8ed;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+.results .heading  h5 {
+  font-weight: 300;
+  font-size: 20px;
 }
 
 .results .date, .results .location {
@@ -275,11 +284,11 @@ form {
     padding: 0 15px;
     top: 71px;
     border-bottom: 1px solid #ccc;
-    background-color: #ECF0F1;
+    background-color: #f5f8fa;
   }
 
-  .search-container input {
-    padding-right: 5px;
+  .search-container form input {
+    padding-right: 0px;
   }
 
   .content {
@@ -294,7 +303,7 @@ form {
   }
 
   .results ul {
-    width: 200px;
+    /*width: 200px;*/
     margin: 0 auto;
   }
 }
