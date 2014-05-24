@@ -1,8 +1,8 @@
-var SearchController = requireController('search');
+var SearchController = requireController('search')
+  , SearchMiddleware = requireRoot('components/search/middleware')
 
 exports.register = function(app){
-  app.get('/search', SearchController.index);
-  app.post('/search', SearchController.index);
+  app.post('/search', SearchMiddleware, SearchController.post);
 }
 
 function requireController(controller){

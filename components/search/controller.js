@@ -1,51 +1,23 @@
-var client = requireRoot('core/lib/elasticsearch/client')
-  , config = requireRoot('core/config').elasticsearch
-  , Parser = requireRoot('components/search/parser')
-  , toQuery = requireRoot('components/search/conversion').toQuery;
+var Collection = requireRoot('components/search/collection');
 
-exports.index = function *(){
-  yield 'GET' == this.method ? get : post;
-}
+exports.post = post;
 
-function *get(){
-  this.status = 'ok';
-}
+/**
+ * POST /search
+ */
 
-function *post(){
-  var parsedSearch, response;
+function *post() {
+  var query = this.request.body.query
+    , reverse = this.request.body.reverse
+    , collection = Collection(query);
 
   try {
-    parsedSearch = Parser.parse(this.request.body.query);
-  } catch (e) {
-    this.body = {error: 'malformed search'}
-    this.status = 'bad request';
-    return
-  }
-
-  try {
-    var query = toQuery(parsedSearch);
-    response = yield perform.bind(null, query);
+    yield collection.fetch;
+    if (reverse)
+      collection.hits.reverse();
+    this.body = collection.toJSON();
   } catch(e) {
-    this.body = {error: 'query exception'}
-    this.status = 'internal server error';
-    return
-  }
-
-  this.body = present(response[0]);
-  this.status = 'ok';
-}
-
-function perform(query, cb){
-  client.search({index: config.index, body: query}, cb);
-}
-
-function present(response){
-  var hits = response.hits.hits.map(function(hit){
-    return hit._source;
-  });
-
-  return {
-    hits: hits,
-    total: response.hits.total
+    this.status = 500;
+    this.body = {error: e.message};
   }
 }

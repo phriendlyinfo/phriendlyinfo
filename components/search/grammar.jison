@@ -19,28 +19,54 @@
 
     return first;
   }
+
+  function normalize(qualifier, command, filters) {
+    var defaults = {
+      arguments: [],
+      command: 'shows',
+      dateRange: [],
+      qualifier: {qualifier: 'all', arguments: []},
+      sort: 'asc'
+    }
+    return extend(defaults, qualifier, command, filters);
+  }
 %}
 
 
 %%
 
 searchExpression
-  : qualifierExpression? commandExpression filterExpression* EOF {return extend({}, $1, $2, {filters: $3})}
+  : qualifierExpression? commandExpression filters? EOF {return normalize($1, $2, $3)}
   ;
 
 commandExpression
-  : COMMAND arguments* -> {command: $1, arguments: $2}
+  : COMMAND argument* -> {command: $1, arguments: $2}
   ;
 
 qualifierExpression
-  : QUALIFIER arguments* -> {qualifier: {qualifier: $1, arguments: $2}}
+  : QUALIFIER argument? -> {qualifier: {qualifier: $1, arguments: (null != $2 ? [$2] : [])}}
   ;
 
-filterExpression
-  : FILTER arguments* -> {filter: $1, arguments: $2}
+filters
+  : filter         -> $1
+  | filters filter -> extend({}, $1, $2)
   ;
 
-arguments
+filter
+  : dateRange -> $1
+  | sort      -> $1
+  ;
+
+dateIdentifier: IN | BETWEEN;
+dateRange
+  : dateIdentifier argument argument? -> {dateRange: [$2, $3]}
+  ;
+
+sort
+  : SORT argument -> {sort: $2}
+  ;
+
+argument
   : STRING     -> $1
   | IDENTIFIER -> $1
   ;

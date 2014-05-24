@@ -8,7 +8,7 @@ filter        "in"|"between"|"sort"
 \s+                   /* skip */
 {command}             return 'COMMAND'
 {qualifier}           return 'QUALIFIER'
-{filter}              return 'FILTER'
+{filter}              return yytext.toUpperCase();
 [a-zA-Z0-9_-]+        return 'IDENTIFIER'
 \"[^\"]*\"|\'[^\']*\' yytext = yytext.substr(1,yyleng-2); return 'STRING';
 <<EOF>>               return 'EOF'
