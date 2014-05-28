@@ -4,7 +4,14 @@
 
 %{
   var slice = [].slice
-    , hasOwn = {}.hasOwnProperty;
+    , hasOwn = {}.hasOwnProperty
+    , DateUtils = requireRoot('core/lib/utils/date')
+    , canonicalDate$ = DateUtils.canonicalDate
+    , incDate$ = DateUtils.increment
+    , parseDate$ = DateUtils.parse;
+
+  const DEFAULT_SIZE = 20;
+  const EARLIEST_DATE = '1983-01-01';
 
   function extend(first){
     var i, ref, prop
@@ -20,15 +27,31 @@
     return first;
   }
 
-  function normalize(qualifier, command, filters) {
+  function normalize(qualifier, filters) {
     var defaults = {
-      arguments: [],
-      command: 'shows',
-      dateRange: [],
-      qualifier: {qualifier: 'all', arguments: []},
+      dateRange: {from: EARLIEST_DATE, to: canonicalDate$()},
+      qualifier: {qualifier: 'all', arguments: [20]},
       sort: 'asc'
     }
-    return extend(defaults, qualifier, command, filters);
+    return extend(defaults, qualifier, filters);
+  }
+
+  function resolveDate(date, options) {
+    date = parseDate$(date);
+    date = incDate$(date, options || {});
+    return canonicalDate$(date);
+  }
+
+  var digits = /^\d+$/;
+  function buildQualifier(qualifier, n) {
+    qualifier = {qualifier: qualifier, arguments: [DEFAULT_SIZE]};
+    var args = qualifier.arguments;
+    if (null != n && digits.exec(n))
+      qualifier.arguments[0] = +n;
+    else if ('all' !== qualifier.qualifier)
+      qualifier.arguments[0] = 1;
+    if (args[0] > DEFAULT_SIZE) args[0] = DEFAULT_SIZE;
+    return qualifier;
   }
 %}
 
@@ -36,15 +59,11 @@
 %%
 
 searchExpression
-  : qualifierExpression? commandExpression filters? EOF {return normalize($1, $2, $3)}
-  ;
-
-commandExpression
-  : COMMAND argument* -> {command: $1, arguments: $2}
+  : qualifierExpression? COMMAND filters? EOF {return normalize($1, $3)}
   ;
 
 qualifierExpression
-  : QUALIFIER argument? -> {qualifier: {qualifier: $1, arguments: (null != $2 ? [$2] : [])}}
+  : QUALIFIER argument? -> {qualifier: buildQualifier($1, $2)};
   ;
 
 filters
@@ -57,9 +76,10 @@ filter
   | sort      -> $1
   ;
 
-dateIdentifier: IN | BETWEEN;
 dateRange
-  : dateIdentifier argument argument? -> {dateRange: [$2, $3]}
+  : ON DATE           -> {dateRange: {from: resolveDate($2), to: resolveDate($2)}}
+  | IN DATE           -> {dateRange: {from: resolveDate($2), to: resolveDate($2, {year: 1})}}
+  | BETWEEN DATE DATE -> {dateRange: {from: resolveDate($2), to: resolveDate($3)}}
   ;
 
 sort

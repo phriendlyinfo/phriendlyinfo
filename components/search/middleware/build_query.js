@@ -1,4 +1,4 @@
-var Query = requireRoot('components/search/query');
+var toQuery = requireRoot('components/search/query');
 
 /**
  * Transforms the parsed query into an
@@ -19,6 +19,6 @@ exports.buildQuery = function *(next) {
     ? 'asc' === sort
     : 'desc' === sort;
 
-  this.request.body.query = Query(query).toQuery();
+  this.request.body.query = toQuery(query);
   yield next;
 }
