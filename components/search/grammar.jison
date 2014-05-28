@@ -72,18 +72,15 @@ filters
   ;
 
 filter
-  : dateRange -> $1
-  | sort      -> $1
+  : dateRange     -> $1
+  | AT argument   -> {at: $2}
+  | SORT argument -> {sort: $2}
   ;
 
 dateRange
   : ON DATE           -> {dateRange: {from: resolveDate($2), to: resolveDate($2)}}
   | IN DATE           -> {dateRange: {from: resolveDate($2), to: resolveDate($2, {year: 1})}}
   | BETWEEN DATE DATE -> {dateRange: {from: resolveDate($2), to: resolveDate($3)}}
-  ;
-
-sort
-  : SORT argument -> {sort: $2}
   ;
 
 argument

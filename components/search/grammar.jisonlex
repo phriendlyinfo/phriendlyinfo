@@ -1,7 +1,7 @@
 %lex
 command           "shows"|"show"
 qualifier         "all"|"first"|"last"
-filter            "in"|"between"|"on"|"sort"
+filter            "in"|"between"|"on"|"at"|"sort"
 date              \d{4}"-"\d{2}"-"\d{2}|\d{4}
 
 %%

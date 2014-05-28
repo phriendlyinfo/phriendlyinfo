@@ -24,6 +24,27 @@ exports.buildFilter = function(filter) {
 
 
 /**
+ * Builds a fuzzy like this query
+ *
+ * @param {Array} fields - fields to fuzzy match on
+ * @param {String} text - text to fuzzy match on
+ * @param {Number} maxQueryTerms - max number of query terms
+ * @return {Object}
+ * @api public
+ */
+
+exports.buildFuzzyLikeThis = function(fields, text, maxQueryTerms) {
+  return {
+    fuzzy_like_this: {
+      fields: fields,
+      like_text: text,
+      max_query_terms: maxQueryTerms || 1
+    }
+  }
+}
+
+
+/**
  * Convience function for building a
  * range involving dates.
  *

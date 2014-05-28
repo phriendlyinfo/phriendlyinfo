@@ -142,6 +142,20 @@ describe('SearchParser', function(){
       });
     });
 
+    describe('`at` filter', function() {
+      it('is parsed correctly', function() {
+        var actual = parser.parse('all shows in 1997 at "madison square garden"')
+          , expected = {
+              at: 'madison square garden',
+              dateRange: {from: '1997-01-01', to: '1998-01-01'},
+              qualifier: {arguments: [20], qualifier: 'all'},
+              sort: 'asc'
+            };
+
+        expect(actual).to.deep.equal(expected);
+      });
+    });
+
     describe('sort', function() {
       it('is ascending', function() {
         var actual = parser.parse('shows sort asc')

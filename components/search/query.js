@@ -4,15 +4,26 @@ var extend = require('underscore').extend
   , QueryBuilder = requireRoot('core/lib/elasticsearch/query_builders');
 
 function toQuery(search) {
-  var range = search.dateRange
+  var at = search.at
+    , range = search.dateRange
     , qualifier = search.qualifier
-    , sort = 'last' === qualifier.qualifier ? 'desc' : 'asc';
+    , sort = 'last' === qualifier.qualifier ? 'desc' : 'asc'
+    , query;
 
-  return extend(
+  query = extend(
     QueryBuilder.buildSort('date', sort),
     QueryBuilder.buildSize(qualifier.arguments[0]),
     QueryBuilder.buildFilter(
       QueryBuilder.buildDateRange(range.from, range.to)
     )
   );
+
+  if (null != at)
+    extend(query, {query: buildVenueQuery(at)});
+
+  return query;
+}
+
+function buildVenueQuery(at) {
+  return QueryBuilder.buildFuzzyLikeThis(["venue.name"], at);
 }
