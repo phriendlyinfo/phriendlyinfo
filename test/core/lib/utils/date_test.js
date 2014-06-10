@@ -1,12 +1,13 @@
 require(require('path').join('..', '..', '..', '..', 'core', 'globals'));
 
 var expect = require('chai').expect
-  , DateStubs = requireRoot('test/support/date_stubs')
-  , stubDate = DateStubs.stubDate
-  , unstubDate = DateStubs.unstubDate
+  , freeze = require('frozen').freeze
+  , melt = require('frozen').melt
   , DateUtils = requireRoot('core/lib/utils/date');
 
 describe('DateUtils', function(){
+  afterEach(melt);
+
   describe('.isCanonicalDate', function(){
     var isCanonicalDate = DateUtils.isCanonicalDate;
 
@@ -21,11 +22,9 @@ describe('DateUtils', function(){
   describe('.canonicalDate', function(){
     var canonicalDate = DateUtils.canonicalDate;
 
-    afterEach(unstubDate);
-
     context('without an argument', function(){
       it('formats the current date as YYYY-MM-DD', function(){
-        stubDate(new Date('2013-10-31'));
+        freeze(new Date('2013-10-31'));
         expect(canonicalDate()).to.equal('2013-10-31');
       });
     });

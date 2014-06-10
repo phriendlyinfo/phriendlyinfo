@@ -27,6 +27,7 @@
         "chai": "~1.9"
       , "co": "~3.0"
       , "commonjs-everywhere": "~0.9"
+      , "frozen": "*"
       , "globber": "~0.1"
       , "jison": "~0.4"
       , "mocha": "~1.18"

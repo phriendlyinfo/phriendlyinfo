@@ -2,16 +2,15 @@ require(require('path').join('..', '..', '..', 'core', 'globals'));
 
 var expect = require('chai').expect
   , parser = requireRoot('components/search/parser')
-  , DateStubs = requireRoot('test/support/date_stubs')
-  , stubDate = DateStubs.stubDate
-  , unstubDate = DateStubs.unstubDate;
+  , freeze = require('frozen').freeze
+  , melt = require('frozen').melt;
 
 describe('SearchParser', function(){
   before(function(){
-    stubDate(new Date('2014-04-10'));
+    freeze(new Date('2014-04-10'));
   });
 
-  after(unstubDate);
+  after(melt);
 
   describe('`show[s]` command', function(){
     describe('qualifiers', function() {
