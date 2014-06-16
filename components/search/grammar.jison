@@ -5,13 +5,14 @@
 %{
   var slice = [].slice
     , hasOwn = {}.hasOwnProperty
+    , config = requireRoot('core/config').search
     , DateUtils = requireRoot('core/lib/utils/date')
     , canonicalDate$ = DateUtils.canonicalDate
     , incDate$ = DateUtils.increment
     , parseDate$ = DateUtils.parse;
 
-  const DEFAULT_SIZE = 10;
-  const EARLIEST_DATE = '1983-01-01';
+  const DEFAULT_SIZE = config.DEFAULT_SIZE;
+  const EARLIEST_DATE = config.EARLIEST_DATE;
 
   function extend(first){
     var i, ref, prop

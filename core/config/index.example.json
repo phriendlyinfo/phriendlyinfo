@@ -2,10 +2,20 @@
     "development":
     {
         "port": 1983
+      , "search":
+        {
+            "DEFAULT_SIZE": 10
+          , "EARLIEST_DATE": "1983-01-01"
+        }
     }
 
   , "production":
     {
         "port": 80
+      , "search":
+        {
+            "DEFAULT_SIZE": 10
+          , "EARLIEST_DATE": "1983-01-01"
+        }
     }
 }
