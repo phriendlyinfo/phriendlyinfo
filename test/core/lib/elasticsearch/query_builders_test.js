@@ -6,8 +6,15 @@ var expect = require('chai').expect
 describe('QueryBuilders', function() {
   describe('.buildSize', function() {
     it('is an elasticsearch size object', function() {
-      var actual = QueryBuilders.buildSize(10)
-        , expected = {size: 10};
+      var actual = QueryBuilders.buildSize({size: 10})
+        , expected = {size: 10, from: 0};
+
+      expect(actual).to.eql(expected);
+    });
+
+    it('is an elasticsearch size object with an explicit `from`', function() {
+      var actual = QueryBuilders.buildSize({size: 10, from: 2})
+        , expected = {size: 10, from: 2};
 
       expect(actual).to.eql(expected);
     });

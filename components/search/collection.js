@@ -1,16 +1,18 @@
 module.exports = Collection;
 
-function Collection(query) {
+function Collection(query, options) {
+  options = options || {};
   if (!(this instanceof Collection))
-    return new Collection(query);
+    return new Collection(query, options);
   this.hits = [];
   this.total = null;
   this.query = query;
+  this.page = options.page;
   this.fetch = this.fetch.bind(this);
 }
 
 Collection.prototype.toJSON = function() {
-  return {hits: this.hits, total: this.total}
+  return {hits: this.hits, page: this.page, total: this.total}
 }
 
 Collection.prototype.fetch = function(cb) {

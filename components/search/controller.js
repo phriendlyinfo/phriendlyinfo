@@ -7,9 +7,10 @@ exports.post = post;
  */
 
 function *post() {
-  var query = this.request.body.query
-    , reverse = this.request.body.reverse
-    , collection = Collection(query);
+  var body = this.request.body
+    , query = body.query
+    , reverse = body.reverse
+    , collection = Collection(query, {page: body.page});
 
   try {
     yield collection.fetch;

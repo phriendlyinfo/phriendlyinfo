@@ -11,14 +11,15 @@ var toQuery = requireRoot('components/search/query');
  */
 
 exports.buildQuery = function *(next) {
-  var query = this.request.body.query
+  var body = this.request.body
+    , query = body.query
     , sort = query.sort
     , qualifier = query.qualifier.qualifier;
 
-  this.request.body.reverse = 'last' === qualifier
+  body.reverse = 'last' === qualifier
     ? 'asc' === sort
     : 'desc' === sort;
 
-  this.request.body.query = toQuery(query);
+  body.query = toQuery(query, body.page);
   yield next;
 }

@@ -7,20 +7,30 @@ module.exports = Collection.extend({
   initialize: function() {
     var self = this;
     self.on('reset', function(){
-      self.trigger('success', {total: self.total, hits: self.models});
+      self.trigger('success', self.toJSON());
     });
   },
 
   parse: function(response) {
+    this.page = response.page;
     this.total = response.total;
     return response.hits;
   },
 
-  fetch: function(search) {
+  fetch: function(search, page) {
+    page = page || 0;
     return fetch.call(this, {
-      data: {query: search},
+      data: {query: search, page: page},
       reset: true,
       type: 'POST'
     });
+  },
+
+  toJSON: function() {
+    return {
+      hits: this.models,
+      page: this.page,
+      total: this.total
+    }
   }
 });

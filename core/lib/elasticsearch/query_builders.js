@@ -1,14 +1,15 @@
 /**
  * Builds a size object
  *
- * @param {Number} size
+ * @param {Object} options
  * @return {Object}
  * @api public
  */
 
-exports.buildSize = function(size) {
-  return {size: size};
+exports.buildSize = function(options) {
+  return {size: options.size, from: options.from || 0};
 }
+
 
 /**
  * Builds a filter object
