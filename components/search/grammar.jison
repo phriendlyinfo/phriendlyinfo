@@ -10,7 +10,7 @@
     , incDate$ = DateUtils.increment
     , parseDate$ = DateUtils.parse;
 
-  const DEFAULT_SIZE = 20;
+  const DEFAULT_SIZE = 10;
   const EARLIEST_DATE = '1983-01-01';
 
   function extend(first){
@@ -30,7 +30,7 @@
   function normalize(qualifier, filters) {
     var defaults = {
       dateRange: {from: EARLIEST_DATE, to: canonicalDate$()},
-      qualifier: {qualifier: 'all', arguments: [20]},
+      qualifier: {qualifier: 'all', arguments: [DEFAULT_SIZE]},
       sort: 'asc'
     }
     return extend(defaults, qualifier, filters);

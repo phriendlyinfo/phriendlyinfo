@@ -18,7 +18,7 @@ describe('SearchParser', function(){
         var actual = parser.parse('shows')
           , expected = {
               dateRange: {from: '1983-01-01', to: '2014-04-10'},
-              qualifier: {arguments: [20], qualifier: 'all'},
+              qualifier: {arguments: [10], qualifier: 'all'},
               sort: 'asc'
             };
 
@@ -29,7 +29,7 @@ describe('SearchParser', function(){
         var actual = parser.parse('all shows')
           , expected = {
               dateRange: {from: '1983-01-01', to: '2014-04-10'},
-              qualifier: {arguments: [20], qualifier: 'all'},
+              qualifier: {arguments: [10], qualifier: 'all'},
               sort: 'asc'
             };
         expect(actual).to.deep.equal(expected);
@@ -83,7 +83,7 @@ describe('SearchParser', function(){
         var actual = parser.parse('last 200 shows')
           , expected = {
               dateRange: {from: '1983-01-01', to: '2014-04-10'},
-              qualifier: {arguments: [20], qualifier: 'last'},
+              qualifier: {arguments: [10], qualifier: 'last'},
               sort: 'asc'
             };
 
@@ -96,7 +96,7 @@ describe('SearchParser', function(){
         var actual = parser.parse('shows on 2012-12-30')
           , expected = {
               dateRange: {from: '2012-12-30', to: '2012-12-30'},
-              qualifier: {arguments: [20], qualifier: 'all'},
+              qualifier: {arguments: [10], qualifier: 'all'},
               sort: 'asc'
             };
 
@@ -109,7 +109,7 @@ describe('SearchParser', function(){
         var actual = parser.parse('shows in 2012')
           , expected = {
               dateRange: {from: '2012-01-01', to: '2013-01-01'},
-              qualifier: {arguments: [20], qualifier: 'all'},
+              qualifier: {arguments: [10], qualifier: 'all'},
               sort: 'asc'
             };
 
@@ -122,7 +122,7 @@ describe('SearchParser', function(){
         var actual = parser.parse('shows between 2012 2013')
           , expected = {
               dateRange: {from: '2012-01-01', to: '2013-01-01'},
-              qualifier: {arguments: [20], qualifier: 'all'},
+              qualifier: {arguments: [10], qualifier: 'all'},
               sort: 'asc'
             };
 
@@ -133,7 +133,7 @@ describe('SearchParser', function(){
         var actual = parser.parse('shows between 2012-06-10 2012-08-16')
           , expected = {
               dateRange: {from: '2012-06-10', to: '2012-08-16'},
-              qualifier: {arguments: [20], qualifier: 'all'},
+              qualifier: {arguments: [10], qualifier: 'all'},
               sort: 'asc'
             };
 
@@ -147,7 +147,7 @@ describe('SearchParser', function(){
           , expected = {
               at: 'madison square garden',
               dateRange: {from: '1997-01-01', to: '1998-01-01'},
-              qualifier: {arguments: [20], qualifier: 'all'},
+              qualifier: {arguments: [10], qualifier: 'all'},
               sort: 'asc'
             };
 
@@ -160,7 +160,7 @@ describe('SearchParser', function(){
         var actual = parser.parse('shows sort asc')
           , expected = {
               dateRange: {from: '1983-01-01', to: '2014-04-10'},
-              qualifier: {arguments: [20], qualifier: 'all'},
+              qualifier: {arguments: [10], qualifier: 'all'},
               sort: 'asc'
             };
 
@@ -171,7 +171,7 @@ describe('SearchParser', function(){
         var actual = parser.parse('shows sort desc')
           , expected = {
               dateRange: {from: '1983-01-01', to: '2014-04-10'},
-              qualifier: {arguments: [20], qualifier: 'all'},
+              qualifier: {arguments: [10], qualifier: 'all'},
               sort: 'desc'
             };
 
