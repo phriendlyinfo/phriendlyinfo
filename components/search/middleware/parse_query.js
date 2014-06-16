@@ -12,7 +12,7 @@ exports.parseQuery = function *(next) {
     this.request.body.query = Parser.parse(this.request.body.query);
   } catch (e) {
     this.body = {error: 'malformed search'};
-    this.status = 'bad request';
+    this.status = 400;
     return
   }
   yield next;

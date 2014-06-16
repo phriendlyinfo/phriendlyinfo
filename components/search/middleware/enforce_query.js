@@ -12,6 +12,6 @@ exports.enforceQuery = function *(next) {
     yield next;
   else {
     this.body = {error: 'query is required'};
-    this.status = 'bad request';
+    this.status = 400;
   }
 }
