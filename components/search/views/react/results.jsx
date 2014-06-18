@@ -2,24 +2,19 @@
 
 module.exports = React.createClass({
   render: function() {
+    var props = this.props
+      , Header = props.Header
+      , Result = props.Result
+      , results = props.results;
     return (
       <section className="results">
-        <section className="heading">
-          <h5><b>{this.props.total}</b> matches</h5>
-        </section>
+        <Header results={results} />
         <ul>
-          {this.props.results.map(function(result){
-            return (
-              <li>
-                <span className="date">{result.get('humanDate')}</span>
-                <span className="location">
-                  {result.get('venue').name} <br />
-                  {result.get('venue').location.city}, {result.get('venue').location.state}
-                </span>
-                <p className="show-notes" dangerouslySetInnerHTML={{__html: result.get('pnet').setlistNotes}} />
-              </li>
-            );
-          }, this)}
+          {
+            results.results.map(function(result){
+              return <Result result={result} />
+            })
+          }
         </ul>
       </section>
     );

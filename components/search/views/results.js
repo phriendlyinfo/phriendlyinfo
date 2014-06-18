@@ -1,5 +1,7 @@
 var Backbone = require('backbone')
-  , Results = require('./react/results');
+  , Result = require('./react/result')
+  , Results = require('./react/results')
+  , ResultHeader = require('./react/result_header');
 
 module.exports = Backbone.View.extend({
   initialize: function() {
@@ -12,7 +14,14 @@ module.exports = Backbone.View.extend({
       total: results.total,
       results: results.hits
     };
-    React.renderComponent(Results(results), this.$el[0]);
+
+    var props = {
+      Header: ResultHeader,
+      Result: Result,
+      results: results
+    };
+
+    React.renderComponent(Results(props), this.$el[0]);
   },
 
   onError: function() {
