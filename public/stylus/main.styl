@@ -10,10 +10,12 @@
 
 metalic-gray = #f5f8fa
 border-gray = #e1e8ed
+border-gray-dark = #999
 main-font-color = #354A55
 dark-red = #C0392B
 light-red = #E74C3C
-
+light-blue = #3498DB
+dark-blue = #2980B9
 
 /**
  * Others
@@ -94,12 +96,12 @@ ul
   padding: 0
 
 a, a:visited, a:active
-  color: dark-red
+  color: dark-blue
 
 a:hover
   transition: .25s linear
-  color: light-red
-  border-bottom: 1px dotted light-red
+  color: light-blue
+  border-bottom: 1px dotted light-blue
 
 
 /**
@@ -219,7 +221,6 @@ form
 .results
   max-width: 600px
   margin: 0 auto
-  // font-weight: 300
 
   ul
     list-style: none
@@ -239,8 +240,9 @@ form
     border-top-left-radius: 3px
 
     h5
-      font-weight: 300
+      display: inline-block
       font-size: 20px
+      font-weight: 300
 
   .date, .location
     text-align: center
@@ -255,6 +257,60 @@ form
   .show-notes
     font-weight: normal
     font-size: 16px
+
+  .pagination
+    background-color: white
+    border-left: 1px solid border-gray
+    border-right: 1px solid border-gray
+    height: 40px
+    padding: 0
+
+    .pagination-main, .pages ul
+      list-style: none
+
+    .pagination-main
+      width: 600px
+
+    .pagination-main li, .pages li
+      display: inline-block
+      border: none
+      border-bottom: 1px solid border-gray
+      font-size: 14px
+      padding: 0
+      text-align: center
+
+    .pagination-main li
+      width: 74px
+      line-height: 40px
+
+    .pagination-main li a
+      display: block
+
+    .pagination-main li a:hover
+      text-decoration: none
+      border-bottom: none
+
+    .pagination-main .pages
+      display: inline-block
+      width: 450px
+      border-left: 1px solid border-gray
+      border-right: 1px solid border-gray
+
+      li
+        border: none
+        width: 35px
+        line-height: 40px
+        margin: 0 2px
+
+        a
+          line-height: 20px
+          border: 1px solid border-gray
+
+        a:hover
+          border: 1px solid border-gray-dark
+
+
+
 
 
 

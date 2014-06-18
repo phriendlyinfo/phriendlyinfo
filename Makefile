@@ -42,6 +42,9 @@ bundle:
 compile-stylus:
 	@$(STYLUS) < public/stylus/main.styl > public/css/main.css
 
+watch-stylus:
+	@$(STYLUS) --watch public/stylus --out public/css
+
 test: build-for-test
 	@$(MOCHA) --reporter spec --recursive --colors --harmony-generators
 

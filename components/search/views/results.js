@@ -1,4 +1,5 @@
 var Backbone = require('backbone')
+  , Pagination = require('./react/pagination')
   , Result = require('./react/result')
   , Results = require('./react/results')
   , ResultHeader = require('./react/result_header');
@@ -17,6 +18,7 @@ module.exports = Backbone.View.extend({
 
     var props = {
       Header: ResultHeader,
+      Pagination: Pagination,
       Result: Result,
       results: results
     };
